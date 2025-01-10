@@ -509,14 +509,12 @@ dependencies = [
 
 [[package]]
 name = "bazel-remote-apis"
-version = "0.14.0-test"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3cc30ca85affc8deb1abefecf58d7170ef65181d4aeeaa0c9a1c642b0416f6b2"
+version = "0.14.0"
+source = "git+https://github.com/amkartashov/bazel-remote-apis-rust?rev=refs%2Fpull%2F8%2Fhead#a93d42ff1e8355a606cd7a8b95ed38ec127b416c"
 dependencies = [
  "pbjson",
  "pbjson-types",
  "prost",
- "prost-types",
  "serde",
  "tonic",
 ]
@@ -4196,7 +4194,6 @@ dependencies = [
  "moon_action",
  "moon_common",
  "moon_config",
- "pbjson-types",
  "reqwest",
  "rustc-hash",
  "scc",

@@ -195,6 +195,7 @@ impl RemoteClient for GrpcRemoteClient {
 
                 if matches!(code, Code::InvalidArgument | Code::FailedPrecondition) {
                     warn!(
+                        hash = &digest.hash,
                         code = ?code,
                         "Failed to cache action result: {}",
                         status.message()
@@ -203,6 +204,7 @@ impl RemoteClient for GrpcRemoteClient {
                     Ok(None)
                 } else if matches!(code, Code::ResourceExhausted) {
                     warn!(
+                        hash = &digest.hash,
                         code = ?code,
                         "Remote service is out of storage space: {}",
                         status.message()
@@ -272,7 +274,7 @@ impl RemoteClient for GrpcRemoteClient {
             if let Some(digest) = download.digest {
                 blobs.push(Blob {
                     digest,
-                    bytes: decompress_blob(self.compression, download.data)?,
+                    bytes: download.data,
                 });
             }
 
@@ -309,7 +311,7 @@ impl RemoteClient for GrpcRemoteClient {
         for blob in blobs {
             requests.push(batch_update_blobs_request::Request {
                 digest: Some(blob.digest),
-                data: compress_blob(self.compression, blob.bytes)?,
+                data: blob.bytes,
                 compressor: get_compressor(self.compression),
             });
         }
@@ -335,6 +337,7 @@ impl RemoteClient for GrpcRemoteClient {
                     Ok(vec![])
                 } else if matches!(code, Code::ResourceExhausted) {
                     warn!(
+                        hash = &digest.hash,
                         code = ?code,
                         "Remote service exhausted resource: {}",
                         status.message()
@@ -354,6 +357,8 @@ impl RemoteClient for GrpcRemoteClient {
             if let Some(status) = upload.status {
                 if status.code != 0 {
                     warn!(
+                        hash = &digest.hash,
+                        blob_hash = upload.digest.as_ref().map(|d| &d.hash),
                         details = ?status.details,
                         "Failed to upload blob: {}",
                         status.message

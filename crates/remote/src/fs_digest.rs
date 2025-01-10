@@ -3,9 +3,9 @@
 use bazel_remote_apis::build::bazel::remote::execution::v2::{
     Digest, NodeProperties, OutputDirectory, OutputFile, OutputSymlink,
 };
+use bazel_remote_apis::google::protobuf::{Timestamp, UInt32Value};
 use chrono::NaiveDateTime;
 use moon_common::path::{PathExt, WorkspaceRelativePathBuf};
-use pbjson_types::{Timestamp, UInt32Value};
 use sha2::{Digest as Sha256Digest, Sha256};
 use starbase_utils::fs::FsError;
 use starbase_utils::glob;

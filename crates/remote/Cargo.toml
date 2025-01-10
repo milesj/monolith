@@ -9,7 +9,9 @@ moon_action = { path = "../action" }
 moon_common = { path = "../common" }
 moon_config = { path = "../config" }
 async-trait = { workspace = true }
-bazel-remote-apis = { version = "0.14.0-test", features = ["json"] }
+bazel-remote-apis = { git = "https://github.com/amkartashov/bazel-remote-apis-rust", rev = "refs/pull/8/head", features = [
+    "serde",
+] }
 chrono = { workspace = true }
 miette = { workspace = true }
 reqwest = { workspace = true, features = ["json"] }
@@ -28,9 +30,6 @@ tonic = { version = "0.12.3", default-features = false, features = [
 ] }
 tracing = { workspace = true }
 zstd = "0.13.2"
-
-# Temp
-pbjson-types = "0.7.0"
 
 [lints]
 workspace = true
