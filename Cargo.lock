@@ -3223,6 +3223,7 @@ dependencies = [
  "moon_common",
  "moon_console",
  "moon_notifier",
+ "moon_process",
  "moon_project",
  "moon_remote",
  "moon_task",
@@ -3358,6 +3359,7 @@ dependencies = [
  "moon_node_tool",
  "moon_platform",
  "moon_plugin",
+ "moon_process",
  "moon_project",
  "moon_project_graph",
  "moon_python_lang",
@@ -4010,6 +4012,7 @@ name = "moon_process"
 version = "0.0.1"
 dependencies = [
  "cached",
+ "libc",
  "miette 7.4.0",
  "moon_args",
  "moon_common",

@@ -252,7 +252,6 @@ impl Platform for DenoPlatform {
                             deno.create_command(&())?
                                 .args(args)
                                 .cwd(working_dir)
-                                .create_async()
                                 .exec_stream_output()
                                 .await
                         })
