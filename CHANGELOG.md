@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+#### 🚀 Updates
+
+- Reworked child process handling to properly handle signals and shutdown accordingly. Additionally,
+  when the pipeline receives a signal, we now display the status that shutdown the pipeline in the
+  summary.
+
 ## 1.31.2
 
 #### 🚀 Updates
